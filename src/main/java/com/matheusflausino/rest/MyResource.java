@@ -1,8 +1,6 @@
 package com.matheusflausino.rest;
 
-import com.matheusflausino.dao.AnswerDAO;
 import com.matheusflausino.models.Answers;
-import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.ws.rs.GET;
@@ -28,6 +26,7 @@ public class MyResource {
     public String getIt() {
 
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("testerHPU");
+        System.out.println(entityManagerFactory.getProperties());
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         Answers resposta = entityManager.find(Answers.class, 1l);
         return resposta.getDescription();

@@ -19,14 +19,14 @@ public class AnswerDAO extends AbstractDAO{
 
     @Override
     protected EntityManager getEntityManager() {
-        return entityManager;
+        if(this.entityManager == null){
+            EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("testerHPU");
+            this.entityManager = entityManagerFactory.createEntityManager();
+        }
+        return this.entityManager;
     }
 
     public AnswerDAO() {
         super(AnswerDAO.class);
-        if(this.entityManager == null){
-            EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("testerHPU");
-            entityManager = entityManagerFactory.createEntityManager();
-        }
     }
 }
