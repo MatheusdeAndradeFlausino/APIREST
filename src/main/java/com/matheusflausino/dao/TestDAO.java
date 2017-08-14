@@ -5,7 +5,7 @@
  */
 package com.matheusflausino.dao;
 
-import com.matheusflausino.models.Answers;
+import com.matheusflausino.models.Tests;
 import com.matheusflausino.util.Connection;
 import javax.persistence.EntityManager;
 
@@ -13,15 +13,15 @@ import javax.persistence.EntityManager;
  *
  * @author vanderlei
  */
+public class TestDAO extends AbstractDAO{
 
-public class AnswerDAO extends AbstractDAO{   
-    
     @Override
     protected EntityManager getEntityManager() {
         return Connection.getEntityManagerMain();
     }
-
-    public AnswerDAO() {
-        super(Answers.class);
+    
+    public TestDAO(){
+        super(Tests.class);
     }
+    
 }

@@ -6,7 +6,6 @@
 package com.matheusflausino.models;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,8 +18,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -33,9 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Answers.findAll", query = "SELECT a FROM Answers a"),
     @NamedQuery(name = "Answers.findById", query = "SELECT a FROM Answers a WHERE a.id = :id"),
-    @NamedQuery(name = "Answers.findByWeight", query = "SELECT a FROM Answers a WHERE a.weight = :weight"),
-    @NamedQuery(name = "Answers.findByCreatedAt", query = "SELECT a FROM Answers a WHERE a.createdAt = :createdAt"),
-    @NamedQuery(name = "Answers.findByUpdatedAt", query = "SELECT a FROM Answers a WHERE a.updatedAt = :updatedAt")})
+    @NamedQuery(name = "Answers.findByWeight", query = "SELECT a FROM Answers a WHERE a.weight = :weight")})
 public class Answers implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -48,14 +43,6 @@ public class Answers implements Serializable {
     private String description;
     @Column(name = "weight")
     private Long weight;
-    @Basic(optional = false)
-    @Column(name = "created_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
-    @Basic(optional = false)
-    @Column(name = "updated_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedAt;
     @JoinColumn(name = "question_id", referencedColumnName = "id")
     @ManyToOne
     private Questions questionId;
@@ -66,13 +53,7 @@ public class Answers implements Serializable {
     public Answers(Long id) {
         this.id = id;
     }
-
-    public Answers(Long id, Date createdAt, Date updatedAt) {
-        this.id = id;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-    }
-
+    
     public Long getId() {
         return id;
     }
@@ -95,22 +76,6 @@ public class Answers implements Serializable {
 
     public void setWeight(Long weight) {
         this.weight = weight;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
     }
 
     public Questions getQuestionId() {

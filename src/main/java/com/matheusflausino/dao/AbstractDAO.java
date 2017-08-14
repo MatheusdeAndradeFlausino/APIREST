@@ -7,7 +7,6 @@ package com.matheusflausino.dao;
 
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 
 /**
  *
@@ -24,6 +23,7 @@ public abstract class AbstractDAO<T> {
 
     public void create(T entity) {
         getEntityManager().persist(entity);
+        //getEntityManager().flush();
     }
 
     public void edit(T entity) {
@@ -39,11 +39,9 @@ public abstract class AbstractDAO<T> {
     }
 
     public List<T> findAll() {
-        /*javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
+        javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         cq.select(cq.from(entityClass));
-        return getEntityManager().createQuery(cq).getResultList();*/
-        Query query = getEntityManager().createQuery("from Answers");
-        return query.getResultList();
+        return getEntityManager().createQuery(cq).getResultList();       
     }
 
     public List<T> findRange(int[] range) {

@@ -5,8 +5,8 @@
  */
 package com.matheusflausino.rest;
 
-import com.matheusflausino.dao.AnswerDAO;
-import com.matheusflausino.models.Answers;
+import com.matheusflausino.dao.QuestionDAO;
+import com.matheusflausino.models.Questions;
 import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -23,33 +23,33 @@ import javax.ws.rs.core.Response;
  *
  * @author vanderlei
  */
-@Path("answer")
-public class Answer {
-
+@Path("question")
+public class Question {
+    
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public List<Answers> getAll() {
-        return new AnswerDAO().findAll();
+    public List<Questions> getAll() {
+        return new QuestionDAO().findAll();
     }
 
     @GET
     @Path("/{id}")
     @Produces({MediaType.APPLICATION_JSON})
-    public Answers get(@PathParam("id") Long id) {
-        return (Answers) new AnswerDAO().find(id);
+    public Questions get(@PathParam("id") Long id) {
+        return (Questions) new QuestionDAO().find(id);
     }
 
     @POST
     @Consumes({MediaType.APPLICATION_JSON})
-    public Response create(Answer answer) {
-        new AnswerDAO().create(answer);
+    public Response create(Questions question) {
+        new QuestionDAO().create(question);
         return Response.status(200).entity("Cadastro realizado com sucesso.").build();
     }
 
     @PUT
     @Consumes({MediaType.APPLICATION_JSON})
-    public Response update(Answer answer) {
-        new AnswerDAO().edit(answer);
+    public Response update(Questions question) {
+        new QuestionDAO().edit(question);
         return Response.status(200).entity("Alteração realizada com sucesso.").build();
     }
 
@@ -57,8 +57,8 @@ public class Answer {
     @Path("/{id}")
     @Produces({MediaType.APPLICATION_JSON})
     public Response delete(@PathParam("id") Long id) {
-        new AnswerDAO().remove(id);
+        new QuestionDAO().remove(id);
         return Response.status(200).entity("Remoção realizada com sucesso.").build();
     }
-
+    
 }
