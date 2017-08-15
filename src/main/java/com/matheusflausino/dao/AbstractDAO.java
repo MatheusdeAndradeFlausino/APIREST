@@ -7,6 +7,7 @@ package com.matheusflausino.dao;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import org.hibernate.Session;
 
 /**
  *
@@ -22,16 +23,27 @@ public abstract class AbstractDAO<T> {
     protected abstract EntityManager getEntityManager();
 
     public void create(T entity) {
-        getEntityManager().persist(entity);
-        //getEntityManager().flush();
+        EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+        em.persist(entity);        
+        em.getTransaction().commit();
+        em.close();
     }
 
     public void edit(T entity) {
-        getEntityManager().merge(entity);
+        EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+        em.merge(entity);
+        em.getTransaction().commit();
+        em.close();
     }
 
     public void remove(T entity) {
-        getEntityManager().remove(getEntityManager().merge(entity));
+        EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+        em.remove(em.merge(entity));
+        em.getTransaction().commit();
+        em.close();       
     }
 
     public T find(Object id) {

@@ -14,16 +14,15 @@ import javax.persistence.Persistence;
  * @author vanderlei
  */
 public class Connection {
-    private static EntityManager entityManagerMain;
+    private static EntityManagerFactory entityManagerMainFactory;
     
     private Connection(){}
     
     public synchronized static EntityManager getEntityManagerMain(){
-        if(Connection.entityManagerMain == null){
-            EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("testerHPU");
-            Connection.entityManagerMain = entityManagerFactory.createEntityManager();
+        if(Connection.entityManagerMainFactory == null){
+            Connection.entityManagerMainFactory = Persistence.createEntityManagerFactory("testerHPU");
         }
-        return Connection.entityManagerMain;
+        return Connection.entityManagerMainFactory.createEntityManager();        
     }
     
 }
