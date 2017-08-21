@@ -6,7 +6,8 @@ import org.glassfish.jersey.server.ResourceConfig;
 
 import java.io.IOException;
 import java.net.URI;
-import org.glassfish.jersey.jackson.internal.jackson.jaxrs.annotation.JacksonFeatures;
+import org.glassfish.jersey.jackson.JacksonFeature;
+import com.matheusflausino.util.CORSFilter;
 
 /**
  * Main class.
@@ -24,7 +25,8 @@ public class Main {
         // create a resource config that scans for JAX-RS resources and providers
         // in com.matheusflausino.api.rest package
         final ResourceConfig rc = new ResourceConfig().packages("com.matheusflausino.rest");
-        rc.register(JacksonFeatures.class);
+        rc.register(JacksonFeature.class);
+        rc.register(CORSFilter.class);
 
         // create and start a new instance of grizzly http server
         // exposing the Jersey application at BASE_URI

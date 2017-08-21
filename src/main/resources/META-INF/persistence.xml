@@ -5,7 +5,7 @@
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://db4free.net:3307/teste_mf"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://db4free.net:3307/teste_mf?useSSL=false"/>
             <property name="javax.persistence.jdbc.user" value="matheus"/>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.password" value="a88384718"/>

@@ -28,8 +28,8 @@ public class Question {
     
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public List<Questions> getAll() {
-        return new QuestionDAO().findAll();
+    public Response getAll() {
+        return Response.ok().entity(new QuestionDAO().findAll()).build();
     }
 
     @GET
